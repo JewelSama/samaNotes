@@ -10,7 +10,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const Category = () => {
     const navigation = useNavigation()
     const logoutHandler = () => {
-        Alert.alert('Logout', 'Are you Sure you want to logout?', [{text: 'Cancel',},{text: 'Logout', onPress: () => ToastAndroid.show("Logged out!", ToastAndroid.SHORT) }])
+        Alert.alert('Logout', 'Are you Sure you want to logout?', [{text: 'Cancel',},{text: 'Logout', onPress: () => {ToastAndroid.show("Logged out!", ToastAndroid.SHORT); Vibration.vibrate(2000)} }])
     }
   return (
     <>
