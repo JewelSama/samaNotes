@@ -6,6 +6,11 @@ import GlobalStyles from '../GlobalStyles';
 
 const Register = () => {
     const navigation = useNavigation()
+
+    const RegisterHandler = () => {
+        navigation.navigate('Category')
+    } 
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
         <View className="flex-1 justify-center px-8 " style={GlobalStyles.droidSafeArea}>
@@ -48,7 +53,7 @@ const Register = () => {
                         // onChangeText={setPasswordConfirm}
                     />
 
-                    <TouchableOpacity className="bg-blue-400 rounded   p-2 mb-10" >
+                    <TouchableOpacity className="bg-blue-400 rounded   p-2 mb-10" onPress={RegisterHandler}>
                         <Text className="text-center text-xl font-bold  text-white mt-1">Register</Text>
                     </TouchableOpacity>
                     
