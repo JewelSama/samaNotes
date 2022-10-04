@@ -6,6 +6,12 @@ import GlobalStyles from '../GlobalStyles';
 
 const Login = () => {
     const navigation = useNavigation()
+
+    const LoginHandler = () => {
+        navigation.navigate('Category')
+    } 
+
+
   return (
     <View className="flex-1 justify-center px-8" style={GlobalStyles.droidSafeArea}>
             
@@ -36,7 +42,7 @@ const Login = () => {
             // onSubmitEditing={handleLogIn}
         />
 
-        <TouchableOpacity className="bg-blue-400 rounded justify-center items-center p-2 mb-10">
+        <TouchableOpacity className="bg-blue-400 rounded justify-center items-center p-2 mb-10" onPress={LoginHandler}>
             <Text className="text-center text-xl font-bold self-center text-white mt-1">Login</Text>
         </TouchableOpacity>
         
