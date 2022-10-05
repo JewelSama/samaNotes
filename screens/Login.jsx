@@ -13,7 +13,7 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const {setLoggedIn,  setToken, setUser } = useContext(GlobalContext)
+    const {setLoggedIn, loggedIn,  setToken, setUser } = useContext(GlobalContext)
 
 
     const loginHandler = () => {
@@ -48,6 +48,8 @@ const Login = () => {
             console.log(resp?.user?.username);
             // console.log(resp?.user?.username);
             setLoading(false);
+            setLoggedIn(true)
+            console.log(loggedIn);
             console.log(resp)
             // if(resp.status){
                 setLoggedIn(true);
