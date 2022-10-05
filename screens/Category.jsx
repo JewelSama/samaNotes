@@ -7,12 +7,13 @@ import Note from '../components/Note'
 import { useNavigation } from '@react-navigation/native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { GlobalContext } from '../context';
-import { logoutAPI } from '../endpoints';
 import { useState } from 'react';
+import { getNotesAPI } from '../endpoints';
+import { useEffect } from 'react';
 
 const Category = () => {
     const [loading, setLoading] = useState(false)
-    const { user, setUser, setToken, setLoggedIn } = useContext(GlobalContext)
+    const { user, setUser, setToken, setNotes, notes, token, setLoggedIn } = useContext(GlobalContext)
     // console.log(user);
 
     const navigation = useNavigation()
@@ -27,6 +28,22 @@ const Category = () => {
       
     }}])
     }
+    useEffect(() => {
+        setLoading(true)
+    fetch(getNotesAPI, {
+        headers: new Headers({
+            'Authorization': `Bearer ${token}`
+        }),
+    })
+    .then(res => res.json())
+    .then(resp => {
+        setLoading(false)
+        setNotes(resp)
+    })
+    }, [])
+    // console.log(notes);
+    let category
+    let data 
   return (
     <>
         <SafeAreaView className="bg-white h-28  flex flex-row justify-between px-4 items-center" style={GlobalStyles.droidSafeArea}>
@@ -46,18 +63,15 @@ const Category = () => {
         </SafeAreaView>
         <ScrollView className="bg-gray-200" showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 10}}>
             <View className="px-4  mt-5">
-                <Note />
-                <Note />
-                <Note />
-                <Note />
-                <Note />
-                <Note />
-                <Note />
-                <Note />
-                <Note />
+                {
+                    notes.map((item) => (
+                         <Note category={item?.category} data={item?.note} key={item?.category} />
+                    ))
+                }
+                
             </View>
         </ScrollView>
-        <TouchableOpacity style={{elevation: 3}} className="bg-blue-400  absolute  h-12 w-12 bottom-28 right-5 rounded-full items-center justify-center" onPress={() => navigation.navigate('Note')}>
+        <TouchableOpacity style={{elevation: 3}} className="bg-blue-400  absolute  h-12 w-12 bottom-28 right-5 rounded-full items-center justify-center" onPress={() => navigation.navigate('Note', {categoryT:category, data:data})}>
             <Entypo name="plus" size={24} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={{elevation: 3}} className="bg-orange-400  absolute  h-14 w-14 bottom-10 right-5 rounded-full items-center justify-center" onPress={logoutHandler}>
