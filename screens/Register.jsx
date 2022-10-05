@@ -1,14 +1,65 @@
-import { ScrollView, Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { ScrollView, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
+import React, {useState} from 'react'
 import Logo from '../assets/avatar3.jpg';
 import { useNavigation } from '@react-navigation/native';
 import GlobalStyles from '../GlobalStyles';
+import { registerAPI } from '../endpoints';
+import { useContext } from 'react';
+import { GlobalContext } from '../context';
 
 const Register = () => {
     const navigation = useNavigation()
+    const  [username, setUsername] = useState("")
+    const  [email, setEmail] = useState("")
+    const  [password, setPassword] = useState("")
+    const  [passwordConfirm, setPasswordConfirm] = useState("")
+    const [loading, setLoading] = useState(false)
+
+    const {setUser, setToken} = useContext(GlobalContext)
+    
 
     const RegisterHandler = () => {
-        navigation.navigate('Category')
+        const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if(username.trim() < 1 || email.trim() < 1 || password.trim() < 1 || passwordConfirm.trim() < 1){
+            alert('Fill in all fields')
+        } else if(password !== passwordConfirm){
+            alert('Passwords do not match!')
+        }else if(password.length < 6){
+            alert('Password must be 6 characters long!')
+        }else if(!email.match(mailFormat)){
+            alert('Email is not valid')
+        }
+
+
+        const formData = {
+            username: username.trim(),
+            email: email.trim(),
+            password: password.trim(),
+            password_confirmation: passwordConfirm.trim(),
+        }
+        setLoading(true)
+
+        fetch(registerAPI, {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(resp => {
+            setLoading(false)
+            setToken(resp?.token)
+            setUser(resp?.user)
+            // console.log('gooddd')
+            navigation.navigate('Category')
+        })
+        .catch(err => {
+            setLoading(false)
+            Alert.alert('Error', err.message)
+        })
+
     } 
 
   return (
@@ -25,36 +76,36 @@ const Register = () => {
                     <TextInput
                         style={{ width: '100%', height: 50, borderBottomWidth: 1 }}
                         className="border-zinc-300 px-3 mb-3 rounded-lg"
-                        placeholder="Enter Username"
-                        // value={name}
-                        // onChangeText={setName}
+                        placeholder="Username"
+                        value={username}
+                        onChangeText={setUsername}
                         autoFocus={true}
                     />
 
                     <TextInput
                         style={{ width: '100%', height: 50, borderBottomWidth: 1 }}
                         className="border-zinc-300 px-3 mb-5 rounded-lg"
-                        placeholder="Enter Email"
-                        // value={email}
-                        // onChangeText={setEmail}
+                        placeholder="Email"
+                        value={email}
+                        onChangeText={setEmail}
                     />
                     <TextInput
                         style={{ width: '100%', height: 50, borderBottomWidth: 1 }}
                         className="border-zinc-300  px-3 mb-5 rounded-lg"
-                        placeholder="Enter Password"
-                        // value={password}
-                        // onChangeText={setPassword}
+                        placeholder="Password"
+                        value={password}
+                        onChangeText={setPassword}
                     />
                     <TextInput
                         style={{ width: '100%', height: 50, borderBottomWidth: 1 }}
                         className="border-zinc-300 px-3 mb-5 rounded-lg"
                         placeholder="Confirm Password"
-                        // value={conf_password}
-                        // onChangeText={setPasswordConfirm}
+                        value={passwordConfirm}
+                        onChangeText={setPasswordConfirm}
                     />
 
-                    <TouchableOpacity className="bg-blue-400 rounded   p-2 mb-10" onPress={RegisterHandler}>
-                        <Text className="text-center text-xl font-bold  text-white mt-1">Register</Text>
+                    <TouchableOpacity className="bg-blue-400 rounded   p-2 mb-10" onPress={RegisterHandler} disabled={loading ? true : false}>
+                        <Text className="text-center text-xl font-bold  text-white mt-1">Register{loading && "..."}</Text>
                     </TouchableOpacity>
                     
 

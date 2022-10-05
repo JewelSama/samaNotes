@@ -45,17 +45,17 @@ const Login = () => {
             }
         })
         .then(resp => {
-            console.log(resp?.user?.username);
+            // console.log(resp?.user?.username);
             // console.log(resp?.user?.username);
             setLoading(false);
             setLoggedIn(true)
-            console.log(loggedIn);
-            console.log(resp)
+            // console.log(loggedIn);
+            // console.log(resp)    
             // if(resp.status){
                 setLoggedIn(true);
                 setToken(resp?.token)
                 setUser(resp?.user)
-                console.log('asm');
+                // console.log('asm');
                 navigation.navigate('Category')
             // }
         }).catch(err => {
