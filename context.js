@@ -6,7 +6,7 @@ const GlobalProvider = ({children}) => {
     // const [loading, setLoading] = useState(false)
     const [loggedIn, setLoggedIn] = useState(false)
     const [token, setToken] = useState('')
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState([])
 
     return(
         <GlobalContext.Provider value={{
