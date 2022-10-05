@@ -7,14 +7,25 @@ import Note from '../components/Note'
 import { useNavigation } from '@react-navigation/native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { GlobalContext } from '../context';
+import { logoutAPI } from '../endpoints';
+import { useState } from 'react';
 
 const Category = () => {
-    const { user } = useContext(GlobalContext)
-    console.log(user);
+    const [loading, setLoading] = useState(false)
+    const { user, setUser, setToken, setLoggedIn } = useContext(GlobalContext)
+    // console.log(user);
 
     const navigation = useNavigation()
     const logoutHandler = () => {
-        Alert.alert('Logout', 'Are you Sure you want to logout?', [{text: 'Cancel',},{text: 'Logout', onPress: () => {ToastAndroid.show("Logged out!", ToastAndroid.SHORT); Vibration.vibrate(2000)} }])
+        Alert.alert('Logout', 'Are you Sure you want to logout?', [{text: 'Cancel',},{text: 'Logout', onPress: () => {       
+        setLoading(true)
+        setUser([]);
+        setToken("")
+        setLoggedIn(false)       
+        navigation.navigate('Login')
+        ToastAndroid.show("Logged out!", ToastAndroid.SHORT); Vibration.vibrate(2000)
+      
+    }}])
     }
   return (
     <>
