@@ -1,13 +1,17 @@
 import { View, SafeAreaView, Text, Image, TouchableOpacity, ScrollView, Alert, Vibration, ToastAndroid } from 'react-native'
-import React from 'react'
+import React, {useContext} from 'react'
 import GlobalStyles from '../GlobalStyles'
 import avatar from '../assets/avatar3.jpg'
 import { Entypo } from '@expo/vector-icons';
 import Note from '../components/Note'
 import { useNavigation } from '@react-navigation/native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { GlobalContext } from '../context';
 
 const Category = () => {
+    const { user } = useContext(GlobalContext)
+    console.log(user);
+
     const navigation = useNavigation()
     const logoutHandler = () => {
         Alert.alert('Logout', 'Are you Sure you want to logout?', [{text: 'Cancel',},{text: 'Logout', onPress: () => {ToastAndroid.show("Logged out!", ToastAndroid.SHORT); Vibration.vibrate(2000)} }])
@@ -23,7 +27,7 @@ const Category = () => {
                     />
                     
                 </TouchableOpacity>
-                <Text className="text-lg font-bold">JewelSama</Text>
+                <Text className="text-lg font-bold">{user && user.username}</Text>
             </View>
             <TouchableOpacity>
                 <Entypo name="magnifying-glass" size={30} color="rgb(156, 163, 175)" />
