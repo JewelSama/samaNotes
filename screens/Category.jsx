@@ -1,4 +1,4 @@
-import { View, SafeAreaView, Text, Image, TouchableOpacity, ScrollView, Alert, Vibration, ToastAndroid } from 'react-native'
+import { View, SafeAreaView, Text, Image, TouchableOpacity, ScrollView, Alert, Vibration, ToastAndroid, ActivityIndicator } from 'react-native'
 import React, {useContext} from 'react'
 import GlobalStyles from '../GlobalStyles'
 import avatar from '../assets/avatar3.jpg'
@@ -21,6 +21,7 @@ const Category = () => {
         Alert.alert('Logout', 'Are you Sure you want to logout?', [{text: 'Cancel',},{text: 'Logout', onPress: () => {       
         setLoading(true)
         setUser([]);
+        setNotes([]);
         setToken("")
         setLoggedIn(false)       
         navigation.navigate('Login')
@@ -62,6 +63,7 @@ const Category = () => {
             </TouchableOpacity>
         </SafeAreaView>
         <ScrollView className="bg-gray-200" showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 10}}>
+        {loading && <ActivityIndicator />}
             <View className="px-4  mt-5">
                 {
                     notes.map((item) => (
