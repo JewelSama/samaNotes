@@ -5,6 +5,7 @@ import  { GlobalContext } from './context';
 import Login from './screens/Login';
 import Category from './screens/Category';
 import NoteScreen from './screens/NoteScreen';
+import EditScreen from './screens/EditScreen';
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator()
@@ -22,6 +23,7 @@ const StackNavigator = () => {
           <>
             <Stack.Screen name="Category" component={Category} />
             <Stack.Screen name="Note" component={NoteScreen} />
+            <Stack.Screen name="Edit" component={EditScreen} />
           </>
         )
         }

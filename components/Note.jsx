@@ -39,7 +39,7 @@ const Note = ({category, data, id}) => {
 
   return (
     <>
-    <TouchableOpacity className="rounded-lg flex-row justify-between items-center bg-white  py-1 px-3 h-20 mb-3" onPress={()=> navigation.navigate('Note', {categoryT:category, data:data})}>
+    <TouchableOpacity className="rounded-lg flex-row justify-between items-center bg-white  py-1 px-3 h-20 mb-3" onPress={()=> navigation.navigate('Edit', {categoryT:category, data:data, id:id})}>
                     <View className="flex flex-row space-x-3">
                         <Image 
                             source={folder}

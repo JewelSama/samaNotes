@@ -17,4 +17,5 @@ export const logoutAPI = endpoint('logout');
 export const getNotesAPI = endpoint('notes')
 export const postNotesAPI = endpoint('notes')
 export const deleteNoteAPI = endpoint('notes/')
+export const editNoteAPI = endpoint('notes/')
 export const searchNotesAPI = endpoint('notessearch/j=') //expects {name} url parameter
