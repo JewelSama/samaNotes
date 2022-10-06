@@ -1,6 +1,6 @@
 import { ScrollView, Text, View, Image, TextInput, TouchableOpacity, ToastAndroid, Alert, ActivityIndicator } from 'react-native'
 import React, {useState, useContext} from 'react'
-import Logo from '../assets/avatar3.jpg';
+import Logo from '../assets/avatar3.png';
 import { useNavigation } from '@react-navigation/native';
 import GlobalStyles from '../GlobalStyles';
 import { GlobalContext } from '../context';
@@ -69,8 +69,8 @@ const Login = () => {
   return (
     <View className="flex-1 justify-center px-8" style={GlobalStyles.droidSafeArea}>
             
-    <View className="items-center mt-10">
-        <Image source={Logo} style={{ width: 100, height: 140, resizeMode: "center" }} />
+    <View className="items-center mt-6">
+        <Image source={Logo} className="w-48 h-48" />
     </View>
 
     <Text className="text-2xl my-5 font-semibold">Welcome back 🗒</Text>
@@ -98,7 +98,7 @@ const Login = () => {
             caretHidden={loading}
         />
 
-        <TouchableOpacity className={`${loading ? 'bg-blue-300' : 'bg-blue-400'} rounded justify-center items-center mt-4 p-2 mb-10`} onPress={loginHandler} disabled={loading ? true : false}>
+        <TouchableOpacity className={`${loading ? 'bg-blue-300' : 'bg-orange-400'} rounded justify-center items-center mt-4 p-2 mb-10`} onPress={loginHandler} disabled={loading ? true : false}>
             <Text className="text-center text-xl font-bold self-center text-white mt-1">{loading ? <ActivityIndicator size="large" color="#fff" /> : "Login"}</Text>
         </TouchableOpacity>
         
@@ -106,7 +106,7 @@ const Login = () => {
         <View className="flex flex-row justify-center items-end">
             <Text className="text-lg text-slate-400">Don't have an account? </Text>
             <TouchableOpacity className="" onPress={()=> navigation.navigate('Register')}>
-                <Text className="text-lg font-bold text-green-600 text-bold">Sign Up</Text>
+                <Text className="text-lg font-bold text-blue-400 text-bold">Sign Up</Text>
             </TouchableOpacity>
         </View>
     </View>

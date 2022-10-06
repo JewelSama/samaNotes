@@ -1,6 +1,6 @@
 import { ScrollView, Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native'
 import React, {useState} from 'react'
-import Logo from '../assets/avatar3.jpg';
+import Logo from '../assets/avatar3.png';
 import { useNavigation } from '@react-navigation/native';
 import GlobalStyles from '../GlobalStyles';
 import { registerAPI } from '../endpoints';
@@ -66,8 +66,8 @@ const Register = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
         <View className="flex-1 justify-center px-8 " style={GlobalStyles.droidSafeArea}>
                 
-                <View className="items-center mt-10">
-                    <Image source={Logo} style={{ width: 100, height: 140, resizeMode: "center" }} />
+                <View className="items-center mt-6">
+                <Image source={Logo} className="w-48 h-48" />
                 </View>
 
                 <Text className="text-2xl my-5 font-bold">Create an account</Text>
@@ -108,7 +108,7 @@ const Register = () => {
                         caretHidden={loading}
                     />
 
-                    <TouchableOpacity className="bg-blue-400 rounded   p-2 mb-10" onPress={RegisterHandler} disabled={loading ? true : false}>
+                    <TouchableOpacity className="bg-orange-400 rounded   p-2 mb-10" onPress={RegisterHandler} disabled={loading ? true : false}>
                         <Text className="text-center text-xl font-bold  text-white mt-1">Register{loading && <ActivityIndicator size="large" color="#fff" />}</Text>
                     </TouchableOpacity>
                     
@@ -116,7 +116,7 @@ const Register = () => {
                     <View className="flex flex-row justify-center items-end">
                         <Text className="text-lg text-slate-400">Already have an account? </Text>
                         <TouchableOpacity className="" onPress={()=> navigation.navigate('Login')}>
-                            <Text className="text-lg font-bold text-green-600 text-bold">Login</Text>
+                            <Text className="text-lg font-bold text-blue-400 text-bold">Login</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
