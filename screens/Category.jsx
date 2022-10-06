@@ -67,13 +67,13 @@ const Category = () => {
             <View className="px-4  mt-5">
                 {
                     notes.map((item) => (
-                         <Note category={item?.category} data={item?.note} key={item?.category} />
+                         <Note category={item?.category} data={item?.note} id={item?.id} key={item?.category} />
                     ))
                 }
                 
             </View>
         </ScrollView>
-        <TouchableOpacity style={{elevation: 3}} className="bg-blue-400  absolute  h-12 w-12 bottom-28 right-6 rounded-full items-center justify-center" onPress={() => navigation.navigate('Note', {categoryT:category, data:data})}>
+        <TouchableOpacity style={{elevation: 3}} className="bg-blue-400  absolute  h-12 w-12 bottom-28 right-6 rounded-full items-center justify-center" onPress={() => navigation.navigate('Note', {categoryT:category, data:data, })}>
             <Entypo name="plus" size={24} color="white" />
         </TouchableOpacity>
         <TouchableOpacity style={{elevation: 3}} className="bg-orange-400  absolute  h-14 w-14 bottom-10 right-5 rounded-full items-center justify-center" onPress={logoutHandler}>
