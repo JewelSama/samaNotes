@@ -1,10 +1,9 @@
-import { View, SafeAreaView, Text, TextInput, TouchableOpacity, ScrollView, Alert, Vibration, ActivityIndicator } from 'react-native'
+import { View, SafeAreaView, Text, TextInput, TouchableOpacity, ScrollView, Alert, Vibration, ActivityIndicator, ToastAndroid } from 'react-native'
 import React, {useState} from 'react'
 import GlobalStyles from '../GlobalStyles'
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 import { postNotesAPI } from '../endpoints';
 import { useContext } from 'react';
 import { GlobalContext } from '../context';
@@ -18,14 +17,12 @@ const NoteScreen = ({navigation, route}) => {
   
   const {token, setNotes, notes} = useContext(GlobalContext)
 
-
-
   const saveNoteHandler = () => {
     if(note.length < 1){
       return alert('Note cannot be empty')
     }
     if(!category){
-      return alert('category cannot be empty')
+      return alert('Title cannot be empty')
     }
     const formData = {
       category: category,
@@ -48,6 +45,7 @@ const NoteScreen = ({navigation, route}) => {
       // console.log(notes);
       navigation.navigate('Category', {notes:notes})
       Vibration.vibrate(1000)
+      ToastAndroid.show("Note created !", ToastAndroid.SHORT);
     })
     .catch(err => {
       setLoading(false)
@@ -56,7 +54,6 @@ const NoteScreen = ({navigation, route}) => {
       console.log(err.message);
     })
   }
-
 
   return (
     <>
@@ -82,17 +79,19 @@ const NoteScreen = ({navigation, route}) => {
         placeholder='Title'
         value={category}
         onChangeText={setCategory}
+        caretHidden={loading}
       />
       <ScrollView className="mt-4">
         <View className="px-5">
           <TextInput
            className='text-lg ' 
             multiline={true}
-            placeholder="Note something down"
+            placeholder="Note something bbdown"
             autoFocus={true}
             selectionColor="black"
             value={note}
             onChangeText={setNote}
+            caretHidden={loading}
           />
         </View> 
       </ScrollView>
