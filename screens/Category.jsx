@@ -1,4 +1,4 @@
-import { View, SafeAreaView, Text, Image, TouchableOpacity, ScrollView, Alert, Vibration, ToastAndroid, ActivityIndicator } from 'react-native'
+import { View, SafeAreaView, Text, Image, TouchableOpacity, ScrollView, Alert, Vibration, ToastAndroid, ActivityIndicator, RefreshControl } from 'react-native'
 import React, {useContext} from 'react'
 import GlobalStyles from '../GlobalStyles'
 import avatar from '../assets/avatar3.jpg'
@@ -11,8 +11,15 @@ import { useState } from 'react';
 import { getNotesAPI } from '../endpoints';
 import { useEffect } from 'react';
 
+
+const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+
 const Category = () => {
     const [loading, setLoading] = useState(false)
+    const [refreshing, setRefreshing] = React.useState(false);
+
     const { user, setUser, setToken, setNotes, notes, token, setLoggedIn } = useContext(GlobalContext)
     // console.log(user);
 
@@ -43,6 +50,19 @@ const Category = () => {
     })
     }, [])
     // console.log(notes);
+
+
+    
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+      }, []);
+
+
+
+
+
+
     let category
     let data 
   return (
@@ -62,8 +82,15 @@ const Category = () => {
                 <Entypo name="magnifying-glass" size={30} color="rgb(156, 163, 175)" />
             </TouchableOpacity>
         </SafeAreaView>
-        <ScrollView className="bg-gray-200" showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 10}}>
-        {loading && <ActivityIndicator />}
+        <ScrollView className="bg-gray-200" showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 10}} 
+            refreshControl={
+                <RefreshControl 
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />
+            }
+        >
+        {loading && <ActivityIndicator size="large" color="rgb(234, 88, 12)" />}
             <View className="px-4  mt-5">
                 {
                     notes.map((item) => (
