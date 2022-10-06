@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, Image, TextInput, TouchableOpacity, ToastAndroid, Alert } from 'react-native'
+import { ScrollView, Text, View, Image, TextInput, TouchableOpacity, ToastAndroid, Alert, ActivityIndicator } from 'react-native'
 import React, {useState, useContext} from 'react'
 import Logo from '../assets/avatar3.jpg';
 import { useNavigation } from '@react-navigation/native';
@@ -99,7 +99,7 @@ const Login = () => {
         />
 
         <TouchableOpacity className={`${loading ? 'bg-blue-300' : 'bg-blue-400'} rounded justify-center items-center mt-4 p-2 mb-10`} onPress={loginHandler} disabled={loading ? true : false}>
-            <Text className="text-center text-xl font-bold self-center text-white mt-1">Login{loading ? '...' : ""}</Text>
+            <Text className="text-center text-xl font-bold self-center text-white mt-1">{loading ? <ActivityIndicator /> : "Login"}</Text>
         </TouchableOpacity>
         
 
