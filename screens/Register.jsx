@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { ScrollView, Text, View, Image, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native'
 import React, {useState} from 'react'
 import Logo from '../assets/avatar3.jpg';
 import { useNavigation } from '@react-navigation/native';
@@ -109,7 +109,7 @@ const Register = () => {
                     />
 
                     <TouchableOpacity className="bg-blue-400 rounded   p-2 mb-10" onPress={RegisterHandler} disabled={loading ? true : false}>
-                        <Text className="text-center text-xl font-bold  text-white mt-1">Register{loading && "..."}</Text>
+                        <Text className="text-center text-xl font-bold  text-white mt-1">Register{loading && <ActivityIndicator size="large" color="#fff" />}</Text>
                     </TouchableOpacity>
                     
 

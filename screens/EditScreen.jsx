@@ -73,7 +73,7 @@ const EditScreen = ({navigation, route}) => {
             )
             }
       </SafeAreaView>
-      {loading && <ActivityIndicator />}
+      {loading && <ActivityIndicator size="large" color="rgb(234, 88, 12)" />}
       <Text className="text-center text-sm mt-2 font-semibold text-gray-400">May 27, 2021 at 2:57</Text>
       <TextInput 
         className="text-xl px-6 mt-4 font-bold"

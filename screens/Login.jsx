@@ -99,7 +99,7 @@ const Login = () => {
         />
 
         <TouchableOpacity className={`${loading ? 'bg-blue-300' : 'bg-blue-400'} rounded justify-center items-center mt-4 p-2 mb-10`} onPress={loginHandler} disabled={loading ? true : false}>
-            <Text className="text-center text-xl font-bold self-center text-white mt-1">{loading ? <ActivityIndicator /> : "Login"}</Text>
+            <Text className="text-center text-xl font-bold self-center text-white mt-1">{loading ? <ActivityIndicator size="large" color="#fff" /> : "Login"}</Text>
         </TouchableOpacity>
         
 
