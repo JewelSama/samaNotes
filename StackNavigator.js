@@ -6,6 +6,7 @@ import Login from './screens/Login';
 import Category from './screens/Category';
 import NoteScreen from './screens/NoteScreen';
 import EditScreen from './screens/EditScreen';
+import SearchScreen from './screens/SearchScreen';
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator()
@@ -24,6 +25,7 @@ const StackNavigator = () => {
             <Stack.Screen name="Category" component={Category} />
             <Stack.Screen name="Note" component={NoteScreen} />
             <Stack.Screen name="Edit" component={EditScreen} />
+            <Stack.Screen name="Search" component={SearchScreen} />
           </>
         )
         }
