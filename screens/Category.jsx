@@ -78,7 +78,7 @@ const Category = () => {
                 </TouchableOpacity>
                 <Text className="text-lg font-bold">{user && user.username}</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.navigate('Search')}>
                 <Entypo name="magnifying-glass" size={30} color="rgb(156, 163, 175)" />
             </TouchableOpacity>
         </SafeAreaView>
