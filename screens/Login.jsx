@@ -85,6 +85,8 @@ const Login = () => {
             autoFocus={true}
             onSubmitEditing={loginHandler}
             caretHidden={loading}
+            selectionColor="rgb(234, 88, 12)"
+            editable={!loading}
         />
 
         <TextInput
@@ -96,6 +98,8 @@ const Login = () => {
             onChangeText={setPassword}
             onSubmitEditing={loginHandler}
             caretHidden={loading}
+            selectionColor="rgb(234, 88, 12)"
+            editable={!loading}
         />
 
         <TouchableOpacity className={`${loading ? 'bg-blue-300' : 'bg-orange-400'} rounded justify-center items-center mt-4 p-2 mb-10`} onPress={loginHandler} disabled={loading ? true : false}>

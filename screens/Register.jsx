@@ -81,6 +81,8 @@ const Register = () => {
                         onChangeText={setUsername}
                         autoFocus={true}
                         caretHidden={loading}
+                        selectionColor="rgb(234, 88, 12)"
+                        editable={!loading}
                     />
 
                     <TextInput
@@ -90,6 +92,8 @@ const Register = () => {
                         value={email}
                         onChangeText={setEmail}
                         caretHidden={loading}
+                        selectionColor="rgb(234, 88, 12)"
+                        editable={!loading}
                     />
                     <TextInput
                         style={{ width: '100%', height: 50, borderBottomWidth: 1 }}
@@ -98,6 +102,8 @@ const Register = () => {
                         value={password}
                         onChangeText={setPassword}
                         caretHidden={loading}
+                        selectionColor="rgb(234, 88, 12)"
+                        editable={!loading}
                     />
                     <TextInput
                         style={{ width: '100%', height: 50, borderBottomWidth: 1 }}
@@ -106,6 +112,8 @@ const Register = () => {
                         value={passwordConfirm}
                         onChangeText={setPasswordConfirm}
                         caretHidden={loading}
+                        selectionColor="rgb(234, 88, 12)"
+                        editable={!loading}
                     />
 
                     <TouchableOpacity className="bg-orange-400 rounded   p-2 mb-10" onPress={RegisterHandler} disabled={loading ? true : false}>

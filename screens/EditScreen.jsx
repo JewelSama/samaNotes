@@ -81,6 +81,7 @@ const EditScreen = ({navigation, route}) => {
         value={category}
         onChangeText={setCategory}
         caretHidden={loading}
+        editable={!loading}
       />
       <ScrollView className="mt-4">
         <View className="px-5">
@@ -93,6 +94,7 @@ const EditScreen = ({navigation, route}) => {
             value={note}
             onChangeText={setNote}
             caretHidden={loading}
+            editable={!loading}
           />
         </View> 
       </ScrollView>
