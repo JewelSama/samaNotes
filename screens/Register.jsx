@@ -80,6 +80,7 @@ const Register = () => {
                         value={username}
                         onChangeText={setUsername}
                         autoFocus={true}
+                        caretHidden={loading}
                     />
 
                     <TextInput
@@ -88,6 +89,7 @@ const Register = () => {
                         placeholder="Email"
                         value={email}
                         onChangeText={setEmail}
+                        caretHidden={loading}
                     />
                     <TextInput
                         style={{ width: '100%', height: 50, borderBottomWidth: 1 }}
@@ -95,6 +97,7 @@ const Register = () => {
                         placeholder="Password"
                         value={password}
                         onChangeText={setPassword}
+                        caretHidden={loading}
                     />
                     <TextInput
                         style={{ width: '100%', height: 50, borderBottomWidth: 1 }}
@@ -102,6 +105,7 @@ const Register = () => {
                         placeholder="Confirm Password"
                         value={passwordConfirm}
                         onChangeText={setPasswordConfirm}
+                        caretHidden={loading}
                     />
 
                     <TouchableOpacity className="bg-blue-400 rounded   p-2 mb-10" onPress={RegisterHandler} disabled={loading ? true : false}>
