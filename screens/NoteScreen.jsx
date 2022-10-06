@@ -45,7 +45,7 @@ const NoteScreen = ({navigation, route}) => {
     .then(resp => {
       setLoading(false)
       setNotes([resp, ...notes])
-      console.log(notes);
+      // console.log(notes);
       navigation.navigate('Category', {notes:notes})
       Vibration.vibrate(1000)
     })
