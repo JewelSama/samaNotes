@@ -10,6 +10,7 @@ import { GlobalContext } from '../context';
 import { useState } from 'react';
 import { getNotesAPI } from '../endpoints';
 import { useEffect } from 'react';
+import noResult from '../assets/noResult.png'
 
 
 const wait = (timeout) => {
@@ -22,6 +23,7 @@ const Category = () => {
 
     const { user, setUser, setToken, setNotes, notes, token, setLoggedIn } = useContext(GlobalContext)
     // console.log(user);
+    // let notes = []
 
     const navigation = useNavigation()
     const logoutHandler = () => {
@@ -91,13 +93,18 @@ const Category = () => {
             }
         >
         {loading && <ActivityIndicator size="large" color="rgb(234, 88, 12)" />}
-            <View className="px-4  mt-5">
-                {
-                    notes.map((item) => (
-                         <Note category={item?.category} data={item?.note} id={item?.id} key={item?.category} />
-                    ))
+            <View className="px-4  mt-5">                
+                {notes &&
+                notes.map((item) => (
+                        <Note category={item?.category} data={item?.note} id={item?.id} key={item?.category} />
+                ))
                 }
-                
+                {notes.length < 1 &&
+                   <Image 
+                   source={noResult}
+                   className={`w-80 self-center mt-32 h-80`}
+               /> 
+                }
             </View>
         </ScrollView>
         <TouchableOpacity style={{elevation: 3}} className="bg-blue-400  absolute  h-12 w-12 bottom-28 right-6 rounded-full items-center justify-center" onPress={() => navigation.navigate('Note', {categoryT:category, data:data, })}>
