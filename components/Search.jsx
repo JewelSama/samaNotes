@@ -21,7 +21,7 @@ const Search = ({category, data}) => {
                     />
                     <View className="flex flex-col">
                         <Text className="font-bold text-lg">{category}</Text>
-                        <Text className="font-semibold text-gray-400 text-md">{data}</Text>
+                        <Text className="font-semibold text-gray-400 text-md">{data.slice(0, 30)}...</Text>
                     </View>
                 </View>
             </TouchableOpacity>
