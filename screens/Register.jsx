@@ -116,7 +116,7 @@ const Register = () => {
                         editable={!loading}
                     />
 
-                    <TouchableOpacity className="bg-orange-400 rounded   p-2 mb-10" onPress={RegisterHandler} disabled={loading ? true : false}>
+                    <TouchableOpacity className={`${loading ? 'bg-orange-300' : 'bg-orange-400'} rounded   p-2 mb-10`} onPress={RegisterHandler} disabled={loading ? true : false}>
                         <Text className="text-center text-xl font-bold  text-white mt-1">Register{loading && <ActivityIndicator size="large" color="#fff" />}</Text>
                     </TouchableOpacity>
                     
