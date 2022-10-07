@@ -100,10 +100,14 @@ const Category = () => {
                 ))
                 }
                 {notes.length < 1 &&
+                <>
                    <Image 
                    source={noResult}
-                   className={`w-80 self-center mt-32 h-80`}
-               /> 
+                   className={`w-80 self-center mt-24 h-80`}
+                   /> 
+                   <Text className="text-center text-gray-700 font-bold text-lg">You have no saved Notes</Text>
+                   <Text className="text-center text-gray-700 font-bold text-lg">Click the<Text className="text-blue-500"> blue</Text> button below to add a new note</Text>
+                </>
                 }
             </View>
         </ScrollView>
