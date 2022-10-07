@@ -1,5 +1,5 @@
 import { SafeAreaView, View, Text, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import GlobalStyles from '../GlobalStyles'
 import { AntDesign } from '@expo/vector-icons';
 import avatar from '../assets/avatar3.jpg'
@@ -9,10 +9,28 @@ import { FontAwesome } from '@expo/vector-icons';
 import Search from '../components/Search';
 import noResult from '../assets/noResult.png'
 import { useState } from 'react';
+import { GlobalContext } from '../context';
 
 const SearchScreen = () => {
   const navigation = useNavigation()
   const [search, setSearch] = useState('')
+
+  const {notes} = useContext(GlobalContext)
+
+  let searched 
+
+  // const itemss = () => {
+    if(search.length > 0){
+
+       searched =  notes.filter(note => note.category.includes(search) || note.note.includes(search))
+      // return searched
+    } else {
+       searched = []
+      // return searched
+    }
+  // }
+  //  searched.push(itemss)
+  // console.log(searched.length)
 
 
   return (
@@ -53,18 +71,34 @@ const SearchScreen = () => {
       </View>
       <ScrollView>
         <View className="px-4 mt-4">
+        {/* { search ? ( 
+          notes.filter(note => note.category.includes(search) || note.note.includes(search)).map(item => (
+            <Search category={item?.category} data={item?.note} key={item?.id} />
+          ))
+        ): (
+          <Image 
+            source={noResult}
+            className="w-80 self-center mt-32 h-80"
+          />
+        )} */}
+        {searched.length > 0 ? (
+          searched.map(item => (
+            <Search category={item.category} data={item?.note} key={item?.id} />
+          ))
+        ) : (
+          <Image 
+            source={noResult}
+            className={`w-80 self-center mt-32 h-80`}
+          />
+        )}
+
           {/* <Search />
           <Search />
           <Search />
           <Search />
           <Search />
           <Search />
-          <Search />
           <Search /> */}
-          <Image 
-            source={noResult}
-            className="w-80 self-center mt-10 h-80"
-          />
         </View>
       </ScrollView>
     </>
