@@ -22,7 +22,7 @@ const SearchScreen = () => {
   // const itemss = () => {
     if(search.length > 0){
 
-       searched =  notes.filter(note => note.category.includes(search) || note.note.includes(search))
+       searched =  notes.filter(note => note.category.toLowerCase().includes(search.toLowerCase()) || note.note.toLowerCase().includes(search.toLowerCase()))
       // return searched
     } else {
        searched = []
@@ -71,19 +71,10 @@ const SearchScreen = () => {
       </View>
       <ScrollView>
         <View className="px-4 mt-4">
-        {/* { search ? ( 
-          notes.filter(note => note.category.includes(search) || note.note.includes(search)).map(item => (
-            <Search category={item?.category} data={item?.note} key={item?.id} />
-          ))
-        ): (
-          <Image 
-            source={noResult}
-            className="w-80 self-center mt-32 h-80"
-          />
-        )} */}
+        
         {searched.length > 0 ? (
           searched.map(item => (
-            <Search category={item.category} data={item?.note} key={item?.id} />
+            <Search category={item.category} data={item?.note} id={item?.id} key={item?.id} />
           ))
         ) : (
           <Image 
@@ -91,14 +82,6 @@ const SearchScreen = () => {
             className={`w-80 self-center mt-32 h-80`}
           />
         )}
-
-          {/* <Search />
-          <Search />
-          <Search />
-          <Search />
-          <Search />
-          <Search />
-          <Search /> */}
         </View>
       </ScrollView>
     </>
