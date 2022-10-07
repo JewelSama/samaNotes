@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { GlobalContext } from '../context';
 import { deleteNoteAPI } from '../endpoints';
 
-const Search = ({category, data}) => {
+const Search = ({category, data, id}) => {
     const navigation = useNavigation()
 
 
