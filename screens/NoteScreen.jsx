@@ -8,14 +8,18 @@ import { postNotesAPI } from '../endpoints';
 import { useContext } from 'react';
 import { GlobalContext } from '../context';
 
+
+
 const NoteScreen = ({navigation, route}) => {
   // const navigation = useNavigation()
   const {categoryT, data} = route.params
   const [category, setCategory] = useState(categoryT)
   const [note, setNote] = useState(data)
   const [loading, setLoading] = useState(false)
+  // console.log(date)
   
   const {token, setNotes, notes} = useContext(GlobalContext)
+
 
   const saveNoteHandler = () => {
     if(note.length < 1){
@@ -73,7 +77,7 @@ const NoteScreen = ({navigation, route}) => {
             }
       </SafeAreaView>
       {loading && <ActivityIndicator size="large" color="rgb(234, 88, 12)" />}
-      <Text className="text-center text-sm mt-2 font-semibold text-gray-400">May 27, 2021 at 2:57</Text>
+      <Text className="text-center text-sm mt-2 font-semibold text-gray-400">Add a Title with your note </Text>
       <TextInput 
         className="text-xl px-6 mt-4 font-bold"
         placeholder='Title'
