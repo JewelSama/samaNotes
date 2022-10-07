@@ -7,15 +7,22 @@ import { Feather } from '@expo/vector-icons';
 import { editNoteAPI } from '../endpoints';
 import { useContext } from 'react';
 import { GlobalContext } from '../context';
+import dateFormat, { masks } from "dateformat";
+
 
 const EditScreen = ({navigation, route}) => {
   // const navigation = useNavigation()
-  const {categoryT, data, id} = route.params
+  const {categoryT, data, id, date} = route.params
   const [category, setCategory] = useState(categoryT)
   const [note, setNote] = useState(data)
   const [loading, setLoading] = useState(false)
   
   const {token, setNotes, notes} = useContext(GlobalContext)
+  console.log(date);
+
+  
+  // console.log(dateFormat);
+
 
   const saveNoteHandler = () => {
     if(note.length < 1){
@@ -74,7 +81,7 @@ const EditScreen = ({navigation, route}) => {
             }
       </SafeAreaView>
       {loading && <ActivityIndicator size="large" color="rgb(234, 88, 12)" />}
-      <Text className="text-center text-sm mt-2 font-semibold text-gray-400">May 27, 2021 at 2:57</Text>
+      <Text className="text-center text-sm mt-2 font-semibold text-gray-400">{dateFormat(date, "mmm dS, yyyy 'at' h:MM")}</Text>
       <TextInput 
         className="text-xl px-6 mt-4 font-bold"
         placeholder='Title'
