@@ -17,7 +17,7 @@ const Note = ({category, data, id}) => {
 
     const deleteHandler = (id) => {
         // console.log(id);
-        Alert.alert('Logout', 'Are you Sure?', [{text: 'Cancel',},{text: 'Delete', onPress: () => {
+        Alert.alert('Delete', 'Are you Sure?', [{text: 'Cancel',},{text: 'Delete', onPress: () => {
             setLoading(true)
             fetch(deleteNoteAPI+id, {
                 method: 'DELETE',
@@ -39,7 +39,7 @@ const Note = ({category, data, id}) => {
 
   return (
     <>
-    <TouchableOpacity className="rounded-lg flex-row justify-between items-center bg-white  py-1 px-3 h-20 mb-3" onPress={()=> navigation.navigate('Edit', {categoryT:category, data:data, id:id})}>
+    <TouchableOpacity className="rounded-lg flex-row justify-between items-center bg-white  py-1 px-3 h-20 mb-3" onPress={()=> navigation.navigate('Edit', {categoryT:category, data:data, id:id})} onLongPress={() => setIsPressed(!isPressed)}>
                     <View className="flex flex-row space-x-3">
                         <Image 
                             source={folder}
@@ -47,7 +47,7 @@ const Note = ({category, data, id}) => {
                         />
                         <View className="flex flex-col">
                             <Text className="font-bold text-lg">{category}</Text>
-                            <Text className="font-semibold text-gray-400 text-md">{data.slice(0, 30)}</Text>
+                            <Text className="font-semibold text-gray-400 text-md">{data.slice(0, 30)}...</Text>
                         </View>
                     </View>
                     <TouchableOpacity className={isPressed ? "absolute right-2 top-3" : ""} onPress={() => setIsPressed(!isPressed)}>
