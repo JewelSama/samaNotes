@@ -96,7 +96,7 @@ const Category = () => {
             <View className="px-4  mt-5">                
                 {notes &&
                 notes.map((item) => (
-                        <Note category={item?.category} data={item?.note} id={item?.id} key={item?.category} />
+                        <Note category={item?.category} data={item?.note} date={item?.created_at} id={item?.id} key={item?.category} />
                 ))
                 }
                 {notes.length < 1 &&

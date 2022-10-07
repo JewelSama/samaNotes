@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { GlobalContext } from '../context';
 import { deleteNoteAPI } from '../endpoints';
 
-const Note = ({category, data, id}) => {
+const Note = ({category, data, id, date}) => {
     const navigation = useNavigation()
     const [isPressed, setIsPressed] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -39,7 +39,7 @@ const Note = ({category, data, id}) => {
 
   return (
     <>
-    <TouchableOpacity className="rounded-lg flex-row justify-between items-center bg-white  py-1 px-3 h-20 mb-3" onPress={()=> navigation.navigate('Edit', {categoryT:category, data:data, id:id})} onLongPress={() => setIsPressed(!isPressed)}>
+    <TouchableOpacity className="rounded-lg flex-row justify-between items-center bg-white  py-1 px-3 h-20 mb-3" onPress={()=> navigation.navigate('Edit', {categoryT:category, data:data, id:id, date:date})} onLongPress={() => setIsPressed(!isPressed)}>
                     <View className="flex flex-row space-x-3">
                         <Image 
                             source={folder}
