@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.13",
     "@react-navigation/native-stack": "^6.9.0",
+    "dateformat": "^5.0.3",
     "expo": "~46.0.13",
     "expo-status-bar": "~1.4.0",
     "nativewind": "^2.0.11",
