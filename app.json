@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#5fede5"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,8 +23,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#5fede5"
+      },
+      "package": "com.jewelsama.samaNotes"
     },
     "web": {
       "favicon": "./assets/favicon.png"
