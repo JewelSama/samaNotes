@@ -22,13 +22,13 @@ const Register = () => {
         const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
         if(username.trim() < 1 || email.trim() < 1 || password.trim() < 1 || passwordConfirm.trim() < 1){
-            alert('Fill in all fields')
+            return alert('Fill in all fields')
         } else if(password !== passwordConfirm){
-            alert('Passwords do not match!')
+            return alert('Passwords do not match!')
         }else if(password.length < 6){
-            alert('Password must be 6 characters long!')
+            return alert('Password must be 6 characters long!')
         }else if(!email.match(mailFormat)){
-            alert('Email is not valid')
+            return alert('Email is not valid')
         }
 
 
